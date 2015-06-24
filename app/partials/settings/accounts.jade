@@ -1,5 +1,5 @@
 h5.well.headliner.hidden-xs(translate="ACCOUNT_MANAGEMENT_EXPLAIN")
-  
+
 .row.form-ctrl
   .col-xs-12.col-lg-6
     input.filter(type="text", ng-model="searchText").form-control
@@ -8,7 +8,7 @@ h5.well.headliner.hidden-xs(translate="ACCOUNT_MANAGEMENT_EXPLAIN")
     a.btn.btn-info.btn-bci(ng-click="transfer(address)", translate="TRANSFER_BETWEEN_ACCOUNTS") (transfer)
 .row
   .col-xs-12
-    div.account-container.clearfix(ng-repeat="account in accounts | filter:searchText | filter:{active: true}")
+    div.account-container.clearfix(ng-repeat="account in accounts | filter:searchText | filter:{archived: false}")
       header
         hgroup.clearfix
           div.col-xs-6
@@ -23,7 +23,7 @@ h5.well.headliner.hidden-xs(translate="ACCOUNT_MANAGEMENT_EXPLAIN")
           li
             a(translate="RENAME",          ng-click="editAccount(account)")
           li
-            a(translate="MAKE_DEFAULT", ng-hide="account.isDefault", ng-click="makeDefault(account)")            
+            a(translate="MAKE_DEFAULT", ng-hide="account.isDefault", ng-click="makeDefault(account)")
           li
             a(translate="BITCOIN_ADDRESS", ng-click="showAddress(account)")
           li
@@ -39,7 +39,7 @@ h5.well.headliner.hidden-xs(translate="ACCOUNT_MANAGEMENT_EXPLAIN")
       tr
         th(translate="ACCOUNT_NAME")
         th
-      tr(ng-repeat="account in accounts | filter:searchText | filter:{active: false}")
+      tr(ng-repeat="account in accounts | filter:searchText | filter:{archived: true}")
         td(ng-bind-html="account.label | highlight:searchText")
         td
           a(translate="UNARCHIVE",          ng-click="unarchive(account)")

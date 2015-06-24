@@ -13,4 +13,4 @@ walletApp.controller "DashboardCtrl", ($scope, Wallet, $log) ->
     receiveAddress = Wallet.getReceivingAddressForAccount(defaultAcctIdx)
     $scope.setPaymentRequestURL(receiveAddress)
 
-  $scope.$watch 'accounts', $scope.updatePaymentInfo, true
+  $scope.$watchCollection 'accounts', $scope.updatePaymentInfo

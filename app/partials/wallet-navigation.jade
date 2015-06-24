@@ -12,9 +12,9 @@
         li.mvs(ng-class="selectedAccountIndex == 'accounts' ? 'active' : ''", ui-sref="wallet.common.transactions({accountIndex:'accounts'})", ng-hide="!status.didUpgradeToHd || numberOfActiveAccounts() <= 1")
           a.pas(translate="ALL_ACCOUNTS")
             span
-              fiat-or-btc(btc="total()")    
+              fiat-or-btc(btc="total()")
         li(ng-repeat="account in accounts" ng-class="selectedAccountIndex != '' && $index == selectedAccountIndex ? 'active' : ''" ui-sref="wallet.common.transactions({accountIndex: account.index.toString()})")
-          a.flex-between.pas(ng-if="account.active")
+          a.flex-between.pas(ng-if="!account.archived")
             span.prs {{ account.label }}
             span
               fiat-or-btc(btc="account.balance")
@@ -53,5 +53,5 @@
         span(translate="SEND_FEEDBACK")
   ul.aside.adverts
     li.header.mbm
-      span(translate="SPONSORS")  
+      span(translate="SPONSORS")
       adverts

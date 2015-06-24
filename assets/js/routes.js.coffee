@@ -1,7 +1,7 @@
 walletApp.config ($stateProvider, $urlRouterProvider) ->
 
   $urlRouterProvider.otherwise("/")
-  
+
   $urlRouterProvider.otherwise(($injector, $location) ->
     Wallet = $injector.get("Wallet")
 
@@ -10,17 +10,17 @@ walletApp.config ($stateProvider, $urlRouterProvider) ->
     else
       $location = "/dashboard"
   )
-  
+
   top =  {
     templateUrl: "partials/top.jade"
     controller: "TopCtrl"
   }
-    
-  walletNav = { 
+
+  walletNav = {
     templateUrl: "partials/wallet-navigation.jade"
     controller: "AccountsCtrl"
   }
-  
+
   commonViews = {
     navigation:  {
       templateUrl: "partials/navigation.jade"
@@ -34,7 +34,7 @@ walletApp.config ($stateProvider, $urlRouterProvider) ->
       templateUrl: "partials/common.jade"
     }
   }
-  
+
   transactionsViews = {
     top: top,
     left: walletNav,
@@ -80,17 +80,17 @@ walletApp.config ($stateProvider, $urlRouterProvider) ->
       }
     }
   )
-  
+
   # Use the same layout as the transactions screen, once signup is complete
-  .state("register.finish", 
+  .state("register.finish",
     url: "/register/finish"
     views: commonViews
   )
   .state("register.finish.show",
     views: transactionsViews
   )
-  
-  
+
+
   $stateProvider.state("wallet.common.dashboard",
     url: "/dashboard"
     views: {
@@ -115,7 +115,7 @@ walletApp.config ($stateProvider, $urlRouterProvider) ->
       },
       right: {
         templateUrl: "partials/support.jade"
-        controller: ($scope, $log, $state) -> 
+        controller: ($scope, $log, $state) ->
           $scope.state = $state
       }
     }
@@ -303,4 +303,4 @@ walletApp.config ($stateProvider, $urlRouterProvider) ->
     onEnter: ($stateParams, $state, Wallet, $translate) ->
       Wallet.goal.verifyEmail = $stateParams.code
   )
-  
+
